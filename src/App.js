@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import PermanentDrawerLeft from "./components/Drawer/Drawer";
 
 function App() {
-  return (
-    <div>
-      
-    </div>
-  );
+    return (
+        <div>
+            <PermanentDrawerLeft />
+        </div>
+    );
 }
 
 export default App;
