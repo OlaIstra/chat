@@ -8,6 +8,7 @@ import Message from "../UI/Message/Message";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { messages } from "../../mock-data.json";
+import { titleInitials } from "../../shared/utils/title-initial";
 
 const useStyles = makeStyles((theme) => ({
   chatLayout: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "scroll",
     height: "100%",
     width: "100%",
-    paddingTop: theme.spacing.unit * 3,
+    paddingTop: theme.spacing(3),
     paddingBottom: "120px",
   },
   messageInputWrapper: {
@@ -33,15 +34,15 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     bottom: 0,
     width: `calc(100% - 370px)`,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
     background: "#fafafa",
   },
   messageInput: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 }));
 
-export default function Conversation() {
+export const Conversation = () => {
   const classes = useStyles();
 
   return (
@@ -51,10 +52,11 @@ export default function Conversation() {
           messages.map((message, index) => {
             const isMessageFromMe = message.sender === "me";
 
-            const userAvatar = <Avatar>{message.sender[0]}</Avatar>;
+            const userAvatar = <Avatar>{titleInitials(message.sender)}</Avatar>;
 
             return (
               <Message
+                key={index}
                 index={index}
                 isMessageFromMe={isMessageFromMe}
                 userAvatar={userAvatar}
@@ -70,4 +72,4 @@ export default function Conversation() {
       </div>
     </main>
   );
-}
+};

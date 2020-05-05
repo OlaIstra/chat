@@ -6,6 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import { chats } from "../../mock-data.json";
 
+import { titleInitials } from "../../shared/utils/title-initial";
+
 const useStyles = makeStyles((theme) => ({
   chatsList: {
     height: "calc(100% - 56px)",
@@ -20,7 +22,7 @@ export default function UserList() {
     <List className={classes.chatsList}>
       {chats.map((chat, index) => (
         <ListItem key={index} button>
-          <Avatar>{chat.title && chat.title[0]}</Avatar>
+          <Avatar>{titleInitials(chat.title)}</Avatar>
           <ListItemText primary={chat.title} />
         </ListItem>
       ))}

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Conversation from "./components/Conversation/Conversation";
+import { Conversation } from "./components/Conversation/Conversation";
 import Drawer from "./components/Drawer/Drawer";
 import AppBar from "./components/AppBar/AppBar";
 

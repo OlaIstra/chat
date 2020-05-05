@@ -26,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
   newChatButton: {
     position: "absolute",
     left: "auto",
-    right: theme.spacing.unit * 3,
-    bottom: theme.spacing.unit * 3 + 48, // + bottom navigation
+    right: theme.spacing(3),
+    bottom: theme.spacing(3) + 48, // + bottom navigation
   },
   drawerHeader: {
     ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing.unit * 3,
-    paddingRight: theme.spacing.unit * 3,
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
   },
 }));
 

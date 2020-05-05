@@ -1,4 +1,5 @@
 import React from "react";
+import classnames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -21,7 +22,7 @@ export default function Button(props) {
   const classes = useStyles();
 
   return (
-    <div className={[classes.root, props.classCustom].join(" ")}>
+    <div className={classnames(classes.root, props.classCustom)}>
       <IconButton aria-label={props.ariaLabel}>{props.icon}</IconButton>
       <p>{props.label}</p>
     </div>
