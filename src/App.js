@@ -1,12 +1,27 @@
 import React from "react";
-import PermanentDrawerLeft from "./components/Drawer/Drawer";
+import { makeStyles } from "@material-ui/core/styles";
 
-function App() {
+import Conversation from "./components/Conversation/Conversation";
+import Drawer from "./components/Drawer/Drawer";
+import AppBar from "./components/AppBar/AppBar";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        position: "relative",
+        display: "flex",
+        width: "100%",
+        height: "100%",
+        backgroundColor: theme.palette.background.default,
+    },
+}));
+
+export default function App() {
+    const classes = useStyles();
     return (
-        <div>
-            <PermanentDrawerLeft />
+        <div className={classes.root}>
+            <AppBar />
+            <Drawer />
+            <Conversation />
         </div>
     );
 }
-
-export default App;
