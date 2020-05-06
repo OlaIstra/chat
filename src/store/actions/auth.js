@@ -7,6 +7,8 @@ import {
     LOGIN_SUCCESS,
     LOGOUT_START,
     LOGIN_FAIL,
+    RECIEVE_AUTH_SUCCESS,
+    RECIEVE_AUTH_FAIL,
 } from "./actionTypes";
 
 export const signup = (username, password) => {
@@ -98,5 +100,43 @@ export const logout = () => {
         dispatch({
             type: LOGOUT_START,
         });
+    };
+};
+
+export const recieveAuth = () => {
+    console.log("recieveAut");
+    return (dispatch, getState) => {
+        const { token } = getState().auth;
+        if (!token) {
+            dispatch({
+                type: RECIEVE_AUTH_FAIL,
+            });
+        }
+        return axios({
+            url: "http://localhost:8010/v1/users/me",
+            headers: {
+                Authorization: `Barear ${token}`,
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => {
+                if (res.success) {
+                    return res.data;
+                }
+                throw new Error(res.message);
+            })
+            .then((res) =>
+                dispatch({
+                    type: RECIEVE_AUTH_SUCCESS,
+                    user: res.data.user,
+                    token: res.data.token,
+                })
+            )
+            .catch((err) =>
+                dispatch({
+                    type: RECIEVE_AUTH_FAIL,
+                })
+            );
     };
 };

@@ -12,6 +12,10 @@ class Auth extends React.Component {
     activeTab: 0,
   };
 
+  componentDidMount() {
+    this.props.recieveAuth();
+  }
+
   handleTabChage = (event, value) => {
     this.setState({ activeTab: value });
   };
