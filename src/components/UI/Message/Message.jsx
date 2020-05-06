@@ -26,28 +26,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Message(props) {
+export const Message = ({ index, isMessageFromMe, userAvatar, message }) => {
   const classes = useStyles();
 
   return (
     <div
-      key={props.index}
+      key={index}
       className={classnames(
         classes.messageWrapper,
-        props.isMessageFromMe && classes.messageWrappperFromMe
+        isMessageFromMe && classes.messageWrappperFromMe
       )}
     >
-      {!props.isMessageFromMe && props.userAvatar}
+      {!isMessageFromMe && userAvatar}
       <Paper
         className={classnames(
           classes.message,
-          props.isMessageFromMe && classes.messageFromMe
+          isMessageFromMe && classes.messageFromMe
         )}
       >
-        <Typography variant="caption">{props.message.sender}</Typography>
-        <Typography variant="body1">{props.message.content}</Typography>
+        <Typography variant="caption">{message.sender}</Typography>
+        <Typography variant="body1">{message.content}</Typography>
       </Paper>
-      {props.isMessageFromMe && props.userAvatar}
+      {isMessageFromMe && userAvatar}
     </div>
   );
-}
+};

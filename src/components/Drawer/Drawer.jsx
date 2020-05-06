@@ -2,9 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
-import Input from "../UI/Input/Input";
-import UserList from "../UserList/UserList";
-import Button from "../UI/Button/Button";
+import { Input } from "../UI/Input/Input";
+import { UserList } from "../UserList/UserList";
+import { Button } from "../UI/Button/Button";
 import ForumIcon from "@material-ui/icons/Forum";
 import ExploreIcon from "@material-ui/icons/Explore";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PermanentDrawerLeft() {
+export const DrawerLeft = () => {
   const classes = useStyles();
 
   return (
@@ -47,7 +47,7 @@ export default function PermanentDrawerLeft() {
       }}
     >
       <div className={classes.drawerHeader}>
-        <Input fullWidth margin="normal" placeholder="Search chats..." />
+        <Input margin="normal" placeholder="Search chats..." />
       </div>
       <Divider />
       <UserList />
@@ -62,4 +62,4 @@ export default function PermanentDrawerLeft() {
       </div>
     </Drawer>
   );
-}
+};

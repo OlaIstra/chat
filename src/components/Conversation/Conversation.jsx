@@ -1,14 +1,12 @@
 import React from "react";
 
-import Avatar from "@material-ui/core/Avatar";
-
 import Paper from "@material-ui/core/Paper";
-import Input from "../UI/Input/Input";
-import Message from "../UI/Message/Message";
+import { Avatar } from "../UI/Avatar/Avatar";
+import { Input } from "../UI/Input/Input";
+import { Message } from "../UI/Message/Message";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { messages } from "../../mock-data.json";
-import { titleInitials } from "../../shared/utils/title-initial";
 
 const useStyles = makeStyles((theme) => ({
   chatLayout: {
@@ -51,8 +49,7 @@ export const Conversation = () => {
         {messages &&
           messages.map((message, index) => {
             const isMessageFromMe = message.sender === "me";
-
-            const userAvatar = <Avatar>{titleInitials(message.sender)}</Avatar>;
+            const userAvatar = <Avatar>{message.sender}</Avatar>;
 
             return (
               <Message
@@ -67,7 +64,7 @@ export const Conversation = () => {
       </div>
       <div className={classes.messageInputWrapper}>
         <Paper className={classes.messageInput} elevation={6}>
-          <Input fullWidth placeholder="Type your message…" />
+          <Input placeholder="Type your message…" />
         </Paper>
       </div>
     </main>

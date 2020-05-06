@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Conversation } from "./components/Conversation/Conversation";
-import Drawer from "./components/Drawer/Drawer";
-import AppBar from "./components/AppBar/AppBar";
+import { Conversation } from "../../components/Conversation/Conversation";
+import { DrawerLeft } from "../../components/Drawer/Drawer";
+import { AppBar } from "../../components/AppBar/AppBar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function App() {
+export const ChatPage = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <AppBar />
-            <Drawer />
+            <AppBar title="Chat" />
+            <DrawerLeft />
             <Conversation />
         </div>
     );
-}
+};

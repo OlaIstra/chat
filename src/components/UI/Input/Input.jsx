@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Input(props) {
+export const Input = ({ placeholder, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="standard-basic" label={props.placeholder} />
-    </form>
+    <div className={classes.root}>
+      <TextField id="standard-basic" label={placeholder} {...rest} />
+    </div>
   );
-}
+};

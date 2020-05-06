@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimplePaper() {
+export const SimplePaper = () => {
   const classes = useStyles();
 
   return (
@@ -22,4 +22,4 @@ export default function SimplePaper() {
       <Paper />
     </div>
   );
-}
+};

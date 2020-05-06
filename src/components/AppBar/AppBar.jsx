@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import AppBar from "@material-ui/core/AppBar";
+import MUIAppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
@@ -13,16 +13,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function App() {
+export const AppBar = ({ title, children }) => {
   const classes = useStyles();
 
   return (
-    <AppBar className={classes.appBar}>
+    <MUIAppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="h4" color="inherit" noWrap>
-          Chat
+          {title}
+          {children}
         </Typography>
       </Toolbar>
-    </AppBar>
+    </MUIAppBar>
   );
-}
+};

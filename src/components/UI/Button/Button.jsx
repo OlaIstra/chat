@@ -18,13 +18,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Button(props) {
+export const Button = ({ classCustom, ariaLabel, icon, label, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <div className={classnames(classes.root, props.classCustom)}>
-      <IconButton aria-label={props.ariaLabel}>{props.icon}</IconButton>
-      <p>{props.label}</p>
+    <div className={classnames(classes.root, classCustom)}>
+      <IconButton aria-label={ariaLabel} {...rest}>
+        {icon}
+      </IconButton>
+      <p>{label}</p>
     </div>
   );
-}
+};
