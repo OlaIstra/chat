@@ -7,7 +7,6 @@ export const titleInitials = (title) => {
             .slice(0, 2)
             .join("");
     } catch (e) {
-        console.log(e);
         return "AA";
     }
 };

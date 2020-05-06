@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Input } from "../UI/Input/Input";
 import { Button } from "../UI/Button/Button";
 import InputIcon from "@material-ui/icons/Input";
@@ -52,22 +51,7 @@ class SignupForm extends React.Component {
 
     const { username, password } = this.state;
 
-    console.log("Sign up:", username.value, password.value);
-
-    axios({
-      method: "post",
-      url: "http://localhost:8010/v1/signup",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      data: {
-        username: username.value,
-        password: password.value,
-      },
-    })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    this.props.onSubmit(username.value, password.value);
   };
 
   render() {

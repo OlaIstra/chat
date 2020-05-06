@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { ChatPage } from "../ChatPage/ChatPage";
-import Auth from "../Auth/Auth";
+import ChatPage from "../../containers/ChatPageContainer";
+import Auth from "../../containers/AuthPageContainer";
 
 export const App = () => (
     <BrowserRouter>
