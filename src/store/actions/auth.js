@@ -1,4 +1,4 @@
-import axios from "axios";
+import { callApi } from "../../shared/utils/call-api";
 import {
     SIGNUP_FAIL,
     SIGNUP_START,
@@ -17,25 +17,15 @@ export const signup = (username, password) => {
             type: SIGNUP_START,
         });
 
-        return axios({
-            method: "post",
-            url: "http://localhost:8010/v1/signup",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            data: {
+        return callApi(
+            "signup",
+            undefined,
+            { method: "post" },
+            {
                 username,
                 password,
-            },
-        })
-            .then((res) => {
-                if (res.data.success) {
-                    return res.data;
-                }
-
-                throw new Error(res.data.error);
-            })
+            }
+        )
             .then((res) => {
                 if (res.token) {
                     throw new Error("Token was not provided");
@@ -63,35 +53,34 @@ export const login = (username, password) => {
             type: LOGIN_START,
         });
 
-        return axios({
-            method: "post",
-            url: "http://localhost:8010/v1/login",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            data: {
+        return callApi(
+            "login",
+            undefined,
+            { method: "post" },
+            {
                 username,
                 password,
-            },
-        })
+            }
+        )
             .then((res) => {
-                if (!res.data.token) {
+                console.log(res);
+                if (!res.token) {
                     throw new Error("Token was not provided");
                 }
 
-                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("token", res.token);
                 dispatch({
                     type: LOGIN_SUCCESS,
-                    user: res.data.user,
-                    token: res.data.token,
+                    user: res.user,
+                    token: res.token,
                 });
             })
-            .catch((err) =>
+            .catch((err) => {
+                console.log(err);
                 dispatch({
                     type: LOGIN_FAIL,
-                })
-            );
+                });
+            });
     };
 };
 
@@ -112,25 +101,12 @@ export const recieveAuth = () => {
                 type: RECIEVE_AUTH_FAIL,
             });
         }
-        return axios({
-            url: "http://localhost:8010/v1/users/me",
-            headers: {
-                Authorization: `Barear ${token}`,
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((res) => {
-                if (res.success) {
-                    return res.data;
-                }
-                throw new Error(res.message);
-            })
+        return callApi("/users/me", token)
             .then((res) =>
                 dispatch({
                     type: RECIEVE_AUTH_SUCCESS,
-                    user: res.data.user,
-                    token: res.data.token,
+                    user: res.user,
+                    token: res.token,
                 })
             )
             .catch((err) =>
